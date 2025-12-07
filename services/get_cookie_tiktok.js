@@ -15,13 +15,14 @@ async function getCookieTiktok() {
 
             browser = await puppeteer.launch({
                 executablePath: CHROME_PATH,
-                headless: false,
-                defaultViewport: null,
+                headless: 'new',
+                defaultViewport: { width: 1920, height: 1080 },
                 args: [
-                    '--start-maximized',
                     '--no-sandbox',
                     '--disable-setuid-sandbox',
                     '--disable-blink-features=AutomationControlled',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
                 ],
                 userDataDir: chromeDataPath,
             });
