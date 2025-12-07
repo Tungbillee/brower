@@ -14,14 +14,13 @@ async function getOlabxToken() {
 
   browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
-    headless: 'new',
-    defaultViewport: { width: 1920, height: 1080 },
+    headless: false,
+    defaultViewport: null,
     args: [
+      "--start-maximized",
       "--disable-blink-features=AutomationControlled",
       "--no-sandbox",
       "--disable-setuid-sandbox",
-      "--disable-dev-shm-usage",
-      "--disable-gpu",
     ],
     userDataDir: chromeDataPath,
   });
