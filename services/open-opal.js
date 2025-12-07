@@ -65,7 +65,7 @@ async function getOpalToken(type = "google-opal") {
   while (!bearerToken && Date.now() - startTime < maxWaitTime) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-
+  await new Promise((resolve) => setTimeout(resolve, 8000));
   await browser.close();
 
   if (!bearerToken) {
