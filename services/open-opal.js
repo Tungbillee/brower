@@ -11,11 +11,24 @@ const PROXY_SERVER = "tnetpx.smitbox.com:18084";
 const PROXY_USERNAME = "k23fjgdf56tg";
 const PROXY_PASSWORD = "dfjh3233498jfg67d9";
 
-async function getOpalToken(type = "google-opal") {
+// Mapping: account type -> Chrome profile folder
+const PROFILE_MAPPING = {
+  "google-opal_1": "chrome-opla-1",
+  "google-opal_2": "chrome-opla-2",
+  "google-opal_3": "chrome-opla-3",
+  "google-opal_4": "chrome-opla-4",
+  "google-opal_5": "chrome-opla-5",
+  // Fallback cho type cũ
+  "google-opal": "opal",
+};
+
+async function getOpalToken(type = "google-opal_1") {
   let browser = null;
 
-  const chromeDataPath = path.join(__dirname, "../chrome-data/opal");
-  console.log("📂 Chrome data path:", chromeDataPath);
+  // Map type sang Chrome profile folder
+  const profileFolder = PROFILE_MAPPING[type] || "chrome-opla-1";
+  const chromeDataPath = path.join(__dirname, `../chrome-data/${profileFolder}`);
+  console.log(`📂 Chrome data path for ${type}:`, chromeDataPath);
 
   browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
