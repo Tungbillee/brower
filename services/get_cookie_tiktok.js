@@ -7,9 +7,9 @@ const CHROME_PATH =
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 // Proxy config
-const PROXY_SERVER = "tnetpx.smitbox.com:18084";
-const PROXY_USERNAME = "k23fjgdf56tg";
-const PROXY_PASSWORD = "dfjh3233498jfg67d9";
+const PROXY_SERVER = "tnetpx.smitbox.com:18081";
+const PROXY_USERNAME = "kfjg9845jdf";
+const PROXY_PASSWORD = "dfjh398jdf9845j";
 
 async function getCookieTiktok() {
   return new Promise(async (resolve, reject) => {
