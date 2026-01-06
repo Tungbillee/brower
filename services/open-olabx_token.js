@@ -80,7 +80,7 @@ async function getOlabxToken() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   await new Promise((resolve) => setTimeout(resolve, 8000));
-  await browser.close();
+  // await browser.close();
 
   if (!bearerToken) {
     throw new Error("Timeout: Could not get token after 220 seconds");
