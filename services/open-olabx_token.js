@@ -30,7 +30,7 @@ async function getOlabxToken() {
     ],
     userDataDir: chromeDataPath,
   });
-
+  console.log("browser", browser);
   const page = await browser.newPage();
 
   // Authenticate proxy
