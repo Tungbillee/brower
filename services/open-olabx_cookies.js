@@ -77,7 +77,7 @@ async function getOlabxCookie() {
   }
 
   await new Promise((resolve) => setTimeout(resolve, 8000));
-  // await browser.close();
+  await browser.close();
 
   if (!cookieValue) {
     throw new Error("Timeout: Could not get cookie after 30 seconds");
