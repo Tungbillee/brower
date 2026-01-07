@@ -11,11 +11,28 @@ const PROXY_SERVER = "tnetpx.smitbox.com:18081";
 const PROXY_USERNAME = "kfjg9845jdf";
 const PROXY_PASSWORD = "dfjh398jdf9845j";
 
-async function getOlabxToken() {
+// Chrome profiles để rotate khi bị rate limit
+const CHROME_PROFILES = [
+  "chrome-videos",
+  "chrome-videos_2",
+  "chrome-videos_3",
+  "chrome-videos_4",
+  "chrome-videos_5",
+];
+
+/**
+ * Lấy Olabx token từ Google Labs
+ * @param {number} profileIndex - Index của chrome profile (0-4), default 0
+ */
+async function getOlabxToken(profileIndex = 0) {
   let browser = null;
 
-  const chromeDataPath = path.join(__dirname, "../chrome-data/chrome-videos");
-  console.log("📂 Chrome data path:", chromeDataPath);
+  // Validate và lấy profile name
+  const safeIndex = Math.min(Math.max(0, profileIndex), CHROME_PROFILES.length - 1);
+  const profileName = CHROME_PROFILES[safeIndex];
+
+  const chromeDataPath = path.join(__dirname, `../chrome-data/${profileName}`);
+  console.log(`📂 Chrome data path (profile ${safeIndex}):`, chromeDataPath);
 
   browser = await puppeteer.launch({
     executablePath: CHROME_PATH,
@@ -91,7 +108,8 @@ async function getOlabxToken() {
   return {
     success: true,
     token: bearerToken,
+    profileIndex: safeIndex,
   };
 }
 
-module.exports = { getOlabxToken };
+module.exports = { getOlabxToken, CHROME_PROFILES };

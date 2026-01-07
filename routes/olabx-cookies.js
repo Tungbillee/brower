@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { getOlabxCookie } = require('../services/open-olabx_cookies');
+const { getOlabxCookie, CHROME_PROFILES } = require('../services/open-olabx_cookies');
 
 // POST /api/olabx-cookies/get-cookie
 router.post('/get-cookie', async (req, res) => {
     try {
-        console.log('🍪 Starting Olabx cookie retrieval...');
-        const result = await getOlabxCookie();
+        const { profileIndex = 0 } = req.body;
+        console.log(`🍪 Starting Olabx cookie retrieval (profile ${profileIndex}/${CHROME_PROFILES.length - 1})...`);
+        const result = await getOlabxCookie(profileIndex);
         console.log('✅ Olabx cookie retrieved successfully');
         res.json({
             success: true,
