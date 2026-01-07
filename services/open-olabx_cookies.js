@@ -96,7 +96,7 @@ async function getOlabxCookie(profileIndex = 0) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 200000));
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   await browser.close();
 
   if (!cookieValue) {

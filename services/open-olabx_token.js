@@ -99,7 +99,7 @@ async function getOlabxToken(profileIndex = 0) {
   while (!bearerToken && Date.now() - startTime < maxWaitTime) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  await new Promise((resolve) => setTimeout(resolve, 200000));
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   await browser.close();
 
   if (!bearerToken) {
