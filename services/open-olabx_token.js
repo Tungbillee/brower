@@ -28,7 +28,10 @@ async function getOlabxToken(profileIndex = 0) {
   let browser = null;
 
   // Validate và lấy profile name
-  const safeIndex = Math.min(Math.max(0, profileIndex), CHROME_PROFILES.length - 1);
+  const safeIndex = Math.min(
+    Math.max(0, profileIndex),
+    CHROME_PROFILES.length - 1
+  );
   const profileName = CHROME_PROFILES[safeIndex];
 
   const chromeDataPath = path.join(__dirname, `../chrome-data/${profileName}`);
@@ -96,7 +99,7 @@ async function getOlabxToken(profileIndex = 0) {
   while (!bearerToken && Date.now() - startTime < maxWaitTime) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  await new Promise((resolve) => setTimeout(resolve, 8000));
+  await new Promise((resolve) => setTimeout(resolve, 200000));
   await browser.close();
 
   if (!bearerToken) {
