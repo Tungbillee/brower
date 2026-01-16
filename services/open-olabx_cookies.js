@@ -21,11 +21,6 @@ const getChromePath = () => {
 
 const CHROME_PATH = getChromePath();
 
-// Proxy config
-const PROXY_SERVER = "tnetpx.smitbox.com:18081";
-const PROXY_USERNAME = "kfjg9845jdf";
-const PROXY_PASSWORD = "dfjh398jdf9845j";
-
 // Chrome profiles để rotate khi bị rate limit
 const CHROME_PROFILES = [
   "chrome-videos",
@@ -61,18 +56,11 @@ async function getOlabxCookie(profileIndex = 0) {
       "--disable-blink-features=AutomationControlled",
       "--no-sandbox",
       "--disable-setuid-sandbox",
-      `--proxy-server=http://${PROXY_SERVER}`,
     ],
     userDataDir: chromeDataPath,
   });
 
   const page = await browser.newPage();
-
-  // Authenticate proxy
-  await page.authenticate({
-    username: PROXY_USERNAME,
-    password: PROXY_PASSWORD,
-  });
 
   // Ẩn dấu hiệu automation
   await page.evaluateOnNewDocument(() => {

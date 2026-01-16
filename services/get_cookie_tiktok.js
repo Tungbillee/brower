@@ -21,11 +21,6 @@ const getChromePath = () => {
 
 const CHROME_PATH = getChromePath();
 
-// Proxy config
-const PROXY_SERVER = "tnetpx.smitbox.com:18081";
-const PROXY_USERNAME = "kfjg9845jdf";
-const PROXY_PASSWORD = "dfjh398jdf9845j";
-
 async function getCookieTiktok() {
   return new Promise(async (resolve, reject) => {
     let browser;
@@ -44,18 +39,11 @@ async function getCookieTiktok() {
           "--no-sandbox",
           "--disable-setuid-sandbox",
           "--disable-blink-features=AutomationControlled",
-          `--proxy-server=http://${PROXY_SERVER}`,
         ],
         userDataDir: chromeDataPath,
       });
 
       const page = await browser.newPage();
-
-      // Authenticate proxy
-      await page.authenticate({
-        username: PROXY_USERNAME,
-        password: PROXY_PASSWORD,
-      });
 
       // Ẩn dấu hiệu automation
       await page.evaluateOnNewDocument(() => {
