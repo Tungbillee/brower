@@ -2,9 +2,24 @@ const puppeteer = require("puppeteer");
 const path = require("path");
 
 // Chrome path - sử dụng biến môi trường hoặc mặc định cho macOS
-const CHROME_PATH =
-  process.env.CHROME_PATH ||
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const getChromePath = () => {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+
+  // Linux
+  if (process.platform === "linux") return "/usr/bin/google-chrome";
+
+  // macOS
+  if (process.platform === "darwin")
+    return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+
+  // Windows
+  if (process.platform === "win32")
+    return "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+
+  return "/usr/bin/google-chrome";
+};
+
+const CHROME_PATH = getChromePath();
 
 // Proxy config
 const PROXY_SERVER = "tnetpx.smitbox.com:18081";
